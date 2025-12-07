@@ -1,53 +1,112 @@
-# OpenTelemetry Helm chart values for ArgoCD deployment with public LoadBalancer
+# OpenTelemetry Demo Helm values for AWS public access
 
-# Collector settings
-collector:
-  enabled: true
+replicaCount: 1
 
-# Frontend proxy settings (main UI)
-frontend:
-  enabled: true
-  service:
-    type: LoadBalancer   # Exposes the service publicly
-    port: 80
-
-# Webstore frontend (second frontend)
-webstore:
-  enabled: true
+frontend-proxy:
   service:
     type: LoadBalancer
-    port: 8081
+    port: 80
 
-# Jaeger UI
-jaeger:
-  enabled: true
+frontend:
+  service:
+    type: LoadBalancer
+    port: 80
+
+ad:
   service:
     type: ClusterIP
+
+cart:
+  service:
+    type: ClusterIP
+
+checkout:
+  service:
+    type: ClusterIP
+
+currency:
+  service:
+    type: ClusterIP
+
+email:
+  service:
+    type: ClusterIP
+
+flagd:
+  service:
+    type: ClusterIP
+
+grafana:
+  service:
+    type: LoadBalancer
+    port: 80
+
+image-provider:
+  service:
+    type: ClusterIP
+
+jaeger-agent:
+  service:
+    type: ClusterIP
+
+jaeger-collector:
+  service:
+    type: ClusterIP
+
+jaeger-query:
+  service:
+    type: LoadBalancer
     port: 16686
 
-# Grafana dashboard
-grafana:
-  enabled: true
-  service:
-    type: LoadBalancer   # optional, if you want Grafana public
-    port: 3000
-
-# Load generator UI (for demo traffic)
-loadgen:
-  enabled: true
+kafka:
   service:
     type: ClusterIP
-    port: 8082
 
-# Feature flags UI
-featureflags:
-  enabled: true
+load-generator:
   service:
     type: ClusterIP
-    port: 8083
 
-# Replica counts
-replicaCount:
-  collector: 1
-  frontend: 1
-  webstore: 1
+opensearch:
+  service:
+    type: ClusterIP
+
+opensearch-headless:
+  service:
+    type: ClusterIP
+
+otel-collector:
+  service:
+    type: ClusterIP
+
+payment:
+  service:
+    type: ClusterIP
+
+postgresql:
+  service:
+    type: ClusterIP
+
+product-catalog:
+  service:
+    type: ClusterIP
+
+prometheus:
+  service:
+    type: LoadBalancer
+    port: 9090
+
+quote:
+  service:
+    type: ClusterIP
+
+recommendation:
+  service:
+    type: ClusterIP
+
+shipping:
+  service:
+    type: ClusterIP
+
+valkey-cart:
+  service:
+    type: ClusterIP
