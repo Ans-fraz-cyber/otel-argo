@@ -1,17 +1,53 @@
-frontendProxy:
+# OpenTelemetry Helm chart values for ArgoCD deployment with public LoadBalancer
+
+# Collector settings
+collector:
+  enabled: true
+
+# Frontend proxy settings (main UI)
+frontend:
+  enabled: true
+  service:
+    type: LoadBalancer   # Exposes the service publicly
+    port: 80
+
+# Webstore frontend (second frontend)
+webstore:
+  enabled: true
   service:
     type: LoadBalancer
+    port: 8081
 
-# Optional: reduce replicas for small cluster (2 t3.medium nodes)
-collector:
-  replicaCount: 1
-frontend:
-  replicaCount: 1
-webstore:
-  replicaCount: 1
-loadGenerator:
-  replicaCount: 1
-grafana:
-  replicaCount: 1
+# Jaeger UI
 jaeger:
-  replicaCount: 1
+  enabled: true
+  service:
+    type: ClusterIP
+    port: 16686
+
+# Grafana dashboard
+grafana:
+  enabled: true
+  service:
+    type: LoadBalancer   # optional, if you want Grafana public
+    port: 3000
+
+# Load generator UI (for demo traffic)
+loadgen:
+  enabled: true
+  service:
+    type: ClusterIP
+    port: 8082
+
+# Feature flags UI
+featureflags:
+  enabled: true
+  service:
+    type: ClusterIP
+    port: 8083
+
+# Replica counts
+replicaCount:
+  collector: 1
+  frontend: 1
+  webstore: 1
