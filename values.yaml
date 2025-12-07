@@ -1,13 +1,15 @@
+# values.yaml for 2 t3.medium nodes cluster
 replicaCount: 1
 
 resources:
   requests:
-    cpu: 50m
-    memory: 128Mi
+    cpu: 25m
+    memory: 64Mi
   limits:
-    cpu: 150m
-    memory: 256Mi
+    cpu: 100m
+    memory: 128Mi
 
+# Core application services (essential)
 coreServices:
   frontend: true
   frontend-proxy: true
@@ -17,15 +19,8 @@ coreServices:
   product-catalog: true
   shipping: true
   recommendation: true
-  accounting: true
-  currency: true
-  email: true
-  flagd: true
-  fraud-detection: true
-  image-provider: true
-  kafka: true
-  otel-collector: true
 
+# Optional/monitoring services - DISABLED for low resources
 optionalServices:
   grafana: false
   opensearch: false
@@ -37,7 +32,13 @@ optionalServices:
   ad: false
   valkey-cart: false
   prometheus: false
+  flagd: false
+  fraud-detection: false
+  image-provider: false
+  kafka: false
+  otel-collector: false
 
+# Frontend service configuration
 frontend:
   service:
     type: LoadBalancer
