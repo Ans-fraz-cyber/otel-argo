@@ -1,64 +1,42 @@
 replicaCount: 1
 
-image:
-  pullPolicy: IfNotPresent
-
 resources:
-  # Default resources for all pods
   requests:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
   limits:
-    cpu: 250m
+    cpu: 150m
     memory: 256Mi
 
-# Core services - essential
 coreServices:
-  frontend:
-    enabled: true
-    resources:
-      requests:
-        cpu: 150m
-        memory: 150Mi
-      limits:
-        cpu: 300m
-        memory: 300Mi
-  frontend-proxy:
-    enabled: true
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 200m
-        memory: 200Mi
-  cart:       { enabled: true }
-  checkout:   { enabled: true }
-  payment:    { enabled: true }
-  product-catalog: { enabled: true }
-  shipping:   { enabled: true }
-  recommendation: { enabled: true }
-  accounting: { enabled: true }
-  currency:   { enabled: true }
-  email:      { enabled: true }
-  flagd:      { enabled: true }
-  fraud-detection: { enabled: true }
-  image-provider: { enabled: true }
-  kafka: { enabled: true }
-  otel-collector: { enabled: true }
+  frontend: true
+  frontend-proxy: true
+  cart: true
+  checkout: true
+  payment: true
+  product-catalog: true
+  shipping: true
+  recommendation: true
+  accounting: true
+  currency: true
+  email: true
+  flagd: true
+  fraud-detection: true
+  image-provider: true
+  kafka: true
+  otel-collector: true
 
-# Optional / heavy services - disabled
 optionalServices:
-  grafana:    { enabled: false }
-  opensearch: { enabled: false }
-  jaeger-query:     { enabled: false }
-  jaeger-collector: { enabled: false }
-  load-generator:   { enabled: false }
-  postgresql:       { enabled: false }
-
-service:
-  type: LoadBalancer
-  port: 8080
+  grafana: false
+  opensearch: false
+  jaeger-collector: false
+  jaeger-query: false
+  load-generator: false
+  postgresql: false
+  quote: false
+  ad: false
+  valkey-cart: false
+  prometheus: false
 
 frontend:
   service:
