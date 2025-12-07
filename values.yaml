@@ -1,0 +1,17 @@
+frontendProxy:
+  service:
+    type: LoadBalancer
+
+# Optional: reduce replicas for small cluster (2 t3.medium nodes)
+collector:
+  replicaCount: 1
+frontend:
+  replicaCount: 1
+webstore:
+  replicaCount: 1
+loadGenerator:
+  replicaCount: 1
+grafana:
+  replicaCount: 1
+jaeger:
+  replicaCount: 1
